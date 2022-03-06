@@ -1,0 +1,7 @@
+@import "src/styles/variables";
+.Info{
+  &-icon {
+    color: $blabla-blue;
+    margin: 0 $extra-small-spacing;
+  }
+}

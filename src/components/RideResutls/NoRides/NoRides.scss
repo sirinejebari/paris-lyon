@@ -1,0 +1,14 @@
+@import "src/styles/variables";
+
+.NoRides {
+  width: 100%;
+  padding: $large-spacing;
+
+  &-text {
+    margin-top: $medium-spacing;
+  }
+
+  &-icon {
+    color: $blabla-dark-blue
+  }
+}

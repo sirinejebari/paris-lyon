@@ -1,0 +1,9 @@
+@import "src/styles/variables";
+
+.LoadingRides {
+  width: 100%;
+  padding: $large-spacing;
+  &-text {
+    margin-top: $medium-spacing
+  }
+}

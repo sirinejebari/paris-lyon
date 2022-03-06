@@ -1,0 +1,26 @@
+@import "src/styles/variables";
+
+.Table {
+  margin-bottom: $medium-spacing;
+
+  tbody {
+    tr {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-spinner {
+    margin-top: $medium-spacing;
+  }
+
+  &-show-more {
+    margin-top: $medium-spacing;
+    background-color: $blabla-blue;
+
+    &:hover {
+      background-color: lighten($blabla-blue, 20%);
+    }
+  }
+}

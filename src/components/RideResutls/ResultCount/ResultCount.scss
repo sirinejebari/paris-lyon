@@ -1,0 +1,12 @@
+@import "src/styles/variables";
+
+.ResultCount {
+  padding: $medium-spacing;
+  &-icon {
+    color: $blabla-green
+  }
+
+  &-text {
+    font-size: $medium-font-size
+  }
+}
