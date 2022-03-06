@@ -21,13 +21,13 @@ export const Table: React.FC = () => {
     const fetchMoreTrips = () => {
         setIsFetchingMore(true)
         TripsApi.getTrips(nextCursor).then((result: any) => {
-                if (!result.trips) {
-                    dispatch(fetchFailed(result.message ?? "A technical error occurred"))
-                    console.log(result);
-                } else {
-                    setIsFetchingMore(false)
-                    dispatch(loadRides(result.trips ?? [], (result.search_info.count - result.search_info.full_trip_count), result.next_cursor))
-                }
+            if (!result.trips) {
+                dispatch(fetchFailed(result.message ?? "A technical error occurred"))
+                console.log(result);
+            } else {
+                setIsFetchingMore(false)
+                dispatch(loadRides(result.trips ?? [], (result.search_info.count - result.search_info.full_trip_count), result.next_cursor))
+            }
         })
             .catch((err: string) => {
                 setIsFetchingMore(false)
@@ -36,9 +36,15 @@ export const Table: React.FC = () => {
     }
 
     useEffect(() => {
+        document.ontouchmove =() => {
+                if (nextCursor && !isFetchingMore) {
+                    fetchMoreTrips()
+                }
+            }
+
         window.onscroll = () => {
             if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
-                if(nextCursor && !isFetchingMore) {
+                if (nextCursor && !isFetchingMore) {
                     fetchMoreTrips()
                 }
             }
