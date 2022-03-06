@@ -1,10 +1,14 @@
-# Getting Started with Create React App
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+The app is hosted on Netlify, you can visit it here : https://dazzling-lamarr-23f391.netlify.app/
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Install All code dependencies
 
 ### `npm start`
 
