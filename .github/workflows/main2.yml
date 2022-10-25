@@ -3,7 +3,7 @@ name: Clean Old Branches
 
 on:
   schedule:
-    - cron: '0 11 1 * *'
+    - cron: '1 * * * *'
 jobs:
   list-all-branches:
     runs-on: ubuntu-latest
