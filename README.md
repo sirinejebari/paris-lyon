@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 The app is hosted on Netlify, you can visit it here : https://dazzling-lamarr-23f391.netlify.app/
 ## Available Scripts
 
-In the project directory, you can run:
+you can run:
 
 ### `npm install`
 
