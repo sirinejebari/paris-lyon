@@ -1,0 +1,17 @@
+# This workflow will send a slack notification every 1st of a month to remind about old branches
+name: Clean Old Branches
+
+on:
+  schedule:
+    - cron: '0 11 1 * *'
+jobs:
+  list-all-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        
+      - name: list 
+        run: git for-each-ref     refs/remotes     --sort=authordate     --format='%(authordate:format:%Y-%m-%d) | %(authordate:relative)  %(align:25,left)%(authorname)%(end) %(refname:strip=3)'    | awk  -v myvar=$(date -j -v-1m +"%Y-%m-%d") '{ if ($1 < myvar) print $0 }'
+
+      
