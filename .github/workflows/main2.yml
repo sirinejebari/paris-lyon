@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: list 
+        id: list
         run: |
           Output=$( git for-each-ref     refs/remotes     --sort=authordate     --format='%(authordate:format:%Y-%m-%d) | %(authordate:relative)  %(align:25,left)%(authorname)%(end) %(refname:strip=3)'    )
           echo $Output         
@@ -27,6 +28,6 @@ jobs:
           # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
           channel-id: 'general'
           # For posting a simple plain text message
-          slack-message:  "GitHub build result: ${{steps.list.outputs.*}}"
+          slack-message:  "GitHub build result: ${{steps.list.outputs.stdout}}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
