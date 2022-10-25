@@ -1,9 +1,9 @@
 # This workflow will send a slack notification every 1st of a month to remind about old branches
-name: Clean Old Branches
+name: Notify old branches
 
 on:
   schedule:
-    - cron: '0 11 1 * *'
+    - cron: '*/1 * * * *'
 jobs:
   list-all-branches:
     runs-on: ubuntu-latest
