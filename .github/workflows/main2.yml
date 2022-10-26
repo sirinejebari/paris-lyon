@@ -15,7 +15,7 @@ jobs:
       - name: list 
         id: list
         run: |
-          Output=$(git for-each-ref refs/remotes --sort=authordate --format='%(authordate:format:%Y-%m-%d) | %(authordate:relative)  %(align:25,left)%(authorname)%(end) %(refname:strip=3)'    | awk  -v myvar=$(date -d 'now - 4 weeks' +"%Y-%m-%d") '{ if ($1 < myvar) print $0 }')
+          Output=$(git for-each-ref refs/remotes --sort=authordate --format='%(authordate:format:%Y-%m-%d) | %(authordate:relative)  %(align:25,left)%(authorname)%(end) %(refname:strip=3)'    | awk  -v myvar=$(date -d 'now - 4 weeks' +"%Y-%m-%d") '{ if ($1 > myvar) print $0 }')
           echo $Output         
           echo "OLD_BRANCHES=$(echo $Output)" >> $GITHUB_ENV
           
