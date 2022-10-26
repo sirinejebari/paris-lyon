@@ -4,7 +4,7 @@ name: Clean Old Branches
 on:
   workflow_dispatch:
   schedule:
-    - cron: '1 * * * *'
+    - cron: '0 10 1 * *'
 jobs:
   list-all-branches:
     runs-on: macos-latest
@@ -17,7 +17,7 @@ jobs:
         run: |
           Output=$(git for-each-ref     refs/remotes/    --sort=authordate     --format='%(authordate:format:%Y-%m-%d) | %(authordate:relative)  %(align:25,left)%(authorname)%(end) %(refname:strip=3)'    | awk  -v myvar=$(date -j -v-1m +"%Y-%m-%d") '{ if ($1 > myvar) print $0 }'    )
           echo $Output         
-          echo "GITHUB_SHA_SHORT=$(echo $Output)" >> $GITHUB_ENV
+          echo "OLD_BRANCHES=$(echo $Output)" >> $GITHUB_ENV
           
       - name: Post to a Slack channel
         id: slack
@@ -28,7 +28,7 @@ jobs:
           # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
           channel-id: 'general,C0482SQ3WF6'
           # For posting a simple plain text message
-          slack-message: "Time to clean some :older_man: branches: \n ${{ join(env.GITHUB_SHA_SHORT, '\n') }}"
+          slack-message: "Time to clean some :older_man: branches: \n ${{ join(env.OLD_BRANCHES, '\n') }}"
 
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
