@@ -28,7 +28,7 @@ jobs:
           # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
           channel-id: 'general'
           # For posting a simple plain text message
-          slack-message: "GitHub build result: ${{ env.$GITHUB_SHA_SHORT }}"
+          slack-message: "GitHub build result: ${{ env.GITHUB_SHA_SHORT }}"
 
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
