@@ -15,7 +15,7 @@ jobs:
       - name: list 
         id: list
         run: |
-          Output=$( git for-each-ref     refs/remotes     --sort=authordate     --format='%(authordate:format:%Y-%m-%d) | %(authordate:relative)  %(align:25,left)%(authorname)%(end) %(refname:strip=3)'    )
+          Output=$( git for-each-ref     refs/remotes     --sort=authordate     --format='%(authordate:format:%Y-%m-%d) | %(authordate:relative)  %(align:25,left) by %(authorname)%(end) %(refname:strip=3)'    )
           echo $Output         
           echo "GITHUB_SHA_SHORT=$(echo $Output)" >> $GITHUB_ENV
           
