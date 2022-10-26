@@ -20,7 +20,7 @@ jobs:
           BAR=${Output[@]} 
           BAZ=${BAR//#/ \\n}  
           echo $BAZ
-          echo "OLD_BRANCHES=$(echo $Output)" >> $GITHUB_ENV
+          echo "OLD_BRANCHES=$(echo $BAZ)" >> $GITHUB_ENV
           
       - name: Post to a Slack channel
         id: slack
