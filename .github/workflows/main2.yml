@@ -17,7 +17,7 @@ jobs:
         run: |
           Output=$( git for-each-ref     refs/remotes     --sort=authordate     --format='%(authordate:format:%Y-%m-%d) | %(authordate:relative)  %(align:25,left)%(authorname)%(end) %(refname:strip=3)'    )
           echo $Output         
-          echo "text=$Output" >> $GITHUB_OUTPUT
+          echo "GITHUB_SHA_SHORT=$(echo Output)" >> $GITHUB_ENV
           
       - name: Post to a Slack channel
         id: slack
@@ -28,18 +28,7 @@ jobs:
           # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
           channel-id: 'general'
           # For posting a simple plain text message
-          payload: |
-            {
-              "text": "GitHub Action build result: ${{ steps.list.outputs.stdout }}    ",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "GitHub Action build result: ${{ steps.list.outputs.stdout }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                  }
-                }
-              ]
-            }
+          slack-message: "GitHub build result: ${{ env.$GITHUB_SHA_SHORT }}"
+
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
