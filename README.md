@@ -6,7 +6,7 @@ The app is hosted on Netlify, you can visit it here : https://dazzling-lamarr-23
 
 you can run:
 some changes
-
+some more chanes
 ### `npm install`
 
 Install All code dependencies
