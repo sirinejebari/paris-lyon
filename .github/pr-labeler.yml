@@ -1,0 +1,7 @@
+feature: ['feature/*', 'feat/*']
+bug: fix/*
+chore: chore/*
+ECO: ['*ECO-*']
+STM: ['*STM-*']
+ONB: ['*ONB-*']
+#add other teams/ tasks ?

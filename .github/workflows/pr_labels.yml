@@ -1,0 +1,24 @@
+# This workflow will send a Slack notification on pos-pro-chapter-front every 1st of the month to remind about old branches
+name: Clean old branches
+
+on:
+  on:
+    pull_request:
+      types: [ opened ]
+jobs:
+  prepare-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Assign author to PR
+        uses: technote-space/assign-author@v1
+
+      - name: add labels
+        uses: TimonVS/pr-labeler-action@v3
+        with:
+          configuration-path: .github/pr-labeler.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
