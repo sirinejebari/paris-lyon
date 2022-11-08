@@ -1,10 +1,10 @@
 # This workflow will send a Slack notification on pos-pro-chapter-front every 1st of the month to remind about old branches
 name: Clean old branches
 
+
 on:
-  on:
-    pull_request:
-      types: [ opened ]
+  pull_request:
+    types: [ opened ]
 jobs:
   prepare-pr:
     runs-on: ubuntu-latest
