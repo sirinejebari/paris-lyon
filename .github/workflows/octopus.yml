@@ -11,18 +11,17 @@ jobs:
         uses: actions/checkout@v3
           
       - name: merge
-        steps:
-        run: 
-        git fetch --all --tags -f
-        git checkout -b txn_staging1 origin/master
-        Output=$(gh pr list --label bug  --state open | awk  '{print $1}')
-        a=($(echo "$Output" | tr ' ' '\n'))
-        for i in "${a[@]}"
-        do
-           echo "merging $i ..."
-           gh pr merge $i -s
-           # or do whatever with individual element of the array
-        done
+        run: |
+          git fetch --all --tags -f
+          git checkout -b txn_staging1 origin/master
+          Output=$(gh pr list --label bug  --state open | awk  '{print $1}')
+          a=($(echo "$Output" | tr ' ' '\n'))
+          for i in "${a[@]}"
+          do
+             echo "merging $i ..."
+             gh pr merge $i -s
+             # or do whatever with individual element of the array
+          done
 
 
 
