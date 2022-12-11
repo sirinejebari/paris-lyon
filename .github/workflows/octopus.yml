@@ -13,7 +13,7 @@ jobs:
       - name: merge
         run: |
           git fetch --all --tags -f
-          git checkout -b txn_staging1 origin/master
+          git checkout -b txn_staging1 origin/main
           Output=$(gh pr list --label bug  --state open | awk  '{print $1}')
           a=($(echo "$Output" | tr ' ' '\n'))
           for i in "${a[@]}"
