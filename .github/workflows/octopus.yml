@@ -13,6 +13,7 @@ jobs:
       - name: merge
         run: |
           git fetch --all --tags -f
+          git push origin --delete txn_staging1
           git checkout -b txn_staging1 origin/main
           Output=$(gh pr list --label bug  --state open | awk  '{print $1}')
           echo "selected PRs $Output"
