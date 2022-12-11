@@ -13,8 +13,7 @@ jobs:
       - name: merge
         run: |
           git fetch --all --tags -f
-          if git show-ref --verify --quiet "refs/heads/txn_staging1"; then
-          git push origin --delete txn_staging1
+          git push origin --delete txn_staging1 &>/dev/null
           git checkout -b txn_staging1 origin/main
           Output=$(gh pr list --label TEST  --state open | awk  '{print $1}')
           listToMerge=""
@@ -32,4 +31,6 @@ jobs:
           git push --set-upstream origin txn_staging1
         env:
           GH_TOKEN: ${{ github.token }}
+
+
 
