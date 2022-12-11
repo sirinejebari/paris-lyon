@@ -15,7 +15,7 @@ jobs:
           git fetch --all --tags -f
           git push origin --delete txn_staging1
           git checkout -b txn_staging1 origin/main
-          Output=$(gh pr list --label bug  --state open | awk  '{print $1}')
+          Output=$(gh pr list --label TEST  --state open | awk  '{print $1}')
           echo "selected PRs $Output"
           a=($(echo "$Output" | tr ' ' '\n'))
           for i in "${a[@]}"
