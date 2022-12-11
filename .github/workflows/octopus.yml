@@ -25,7 +25,8 @@ jobs:
              # or do whatever with individual element of the array
           done
           git push --set-upstream origin txn_staging1
-
+        env:
+          GH_TOKEN: ${{ github.token }}
 
 
 
