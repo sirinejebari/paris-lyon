@@ -1,0 +1,32 @@
+name: Octopus Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  merge-bug-prs:
+    runs-on: macos-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+          
+      - name: merge
+        run: |
+          git fetch --all --tags -f
+          git push origin --delete txn_staging1
+          git checkout -b txn_staging1 origin/main
+          Output=$(gh pr list --label TEST  --state open | awk  '{print $1}')
+          echo "selected PRs $Output"
+          a=($(echo "$Output" | tr ' ' '\n'))
+          for i in "${a[@]}"
+          do
+             echo "merging $i ..."
+             gh pr merge $i -s
+             # or do whatever with individual element of the array
+          done
+          git push --set-upstream origin txn_staging1
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+
+
