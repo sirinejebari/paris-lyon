@@ -22,6 +22,7 @@ jobs:
              gh pr merge $i -s
              # or do whatever with individual element of the array
           done
+          git push --set-upstream origin txn_staging1
 
 
 
