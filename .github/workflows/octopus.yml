@@ -14,6 +14,7 @@ jobs:
         run: |
           git fetch --all --tags -f
           git push origin --delete txn_staging1
+          git checkout -b txn_staging1 origin/main
           Output=$(gh pr list --label TEST  --state open | awk  '{print $1}')
           listToMerge=""
           echo "selected PRs $Output"
@@ -25,8 +26,9 @@ jobs:
              listToMerge="$listToMerge new-pr-$i" 
              # or do whatever with individual element of the array
           done
-          git checkout -b txn_staging1 origin/main
+          git checkout txn_staging1
           git merge $listToMerge
           git push --set-upstream origin txn_staging1
         env:
           GH_TOKEN: ${{ github.token }}
+
