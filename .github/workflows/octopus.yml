@@ -9,24 +9,24 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-          
+
       - name: merge
         run: |
           git fetch --all --tags -f
           git push origin --delete txn_staging1
-          git checkout -b txn_staging1 origin/main
           Output=$(gh pr list --label TEST  --state open | awk  '{print $1}')
+          listToMerge=""
           echo "selected PRs $Output"
           a=($(echo "$Output" | tr ' ' '\n'))
           for i in "${a[@]}"
           do
-             echo "merging $i ..."
-             gh pr merge $i -s
+             echo "checking out PR #$i ..."
+             gh pr checkout $i -b  new-pr-$i
+             listToMerge="$listToMerge new-pr-$i" 
              # or do whatever with individual element of the array
           done
+          git checkout -b txn_staging1 origin/main
+          git merge $listToMerge
           git push --set-upstream origin txn_staging1
         env:
           GH_TOKEN: ${{ github.token }}
-
-
-
