@@ -16,6 +16,7 @@ jobs:
 
       - name: merge
         run: |
+          echo $github.event.pull_request.labels
           git fetch --all --tags -f
           git push origin --delete txn_staging1 &>/dev/null
           git checkout -b txn_staging1 origin/main
