@@ -3,7 +3,7 @@ name: Octopus Test
 on:
   workflow_dispatch:
   pull_request:
-    types: [ labeled ]
+    types: [opened, edited, labeled ]
 
 jobs:
   merge-bug-prs:
