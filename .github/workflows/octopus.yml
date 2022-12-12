@@ -7,7 +7,7 @@ on:
 
 jobs:
   merge-bug-prs:
-    if: ${{ github.event.label.name == 'TEST' }}
+    if: ${{contains(github.event.pull_request.labels.*.name, 'TEST') }}
     runs-on: ubuntu-latest
 
     steps:
