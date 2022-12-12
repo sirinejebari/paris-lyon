@@ -16,6 +16,8 @@ jobs:
 
       - name: merge
         run: |
+          x=${{ toJson(github.event.pull_request.labels.*.name) }}
+          echo $x
           echo $github.event.pull_request.labels
           git fetch --all --tags -f
           git push origin --delete txn_staging1 &>/dev/null
